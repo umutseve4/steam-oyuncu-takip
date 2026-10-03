@@ -36,7 +36,7 @@
 <body>
 <div class="wrap">
   <h1>🎮 Steam Oyuncu Takip</h1>
-  <div class="sub">Anlık oyuncu sayıları · 5 ölçüm · Son güncelleme: 02.10.2026 23:38 (UTC)</div>
+  <div class="sub">Anlık oyuncu sayıları · 10 ölçüm · Son güncelleme: 03.10.2026 04:41 (UTC)</div>
 
   <div class="cards" id="cards"></div>
 
@@ -63,8 +63,8 @@
 </div>
 
 <script>
-const SERIES = {"Titanfall 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 1198}], "Rainbow Six Siege": [{"x": "2026-10-02T23:38:31+00:00", "y": 68763}], "Star Wars Battlefront II": [{"x": "2026-10-02T23:38:31+00:00", "y": 990}], "Watch Dogs": [{"x": "2026-10-02T23:38:31+00:00", "y": 1380}], "Watch Dogs 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 2531}]};
-const STATS  = [{"game": "Rainbow Six Siege", "last": 68763, "avg": 68763, "min": 68763, "max": 68763, "peak_at": "2026-10-02T23:38:31+00:00", "change": 0.0, "n": 1}, {"game": "Watch Dogs 2", "last": 2531, "avg": 2531, "min": 2531, "max": 2531, "peak_at": "2026-10-02T23:38:31+00:00", "change": 0.0, "n": 1}, {"game": "Watch Dogs", "last": 1380, "avg": 1380, "min": 1380, "max": 1380, "peak_at": "2026-10-02T23:38:31+00:00", "change": 0.0, "n": 1}, {"game": "Titanfall 2", "last": 1198, "avg": 1198, "min": 1198, "max": 1198, "peak_at": "2026-10-02T23:38:31+00:00", "change": 0.0, "n": 1}, {"game": "Star Wars Battlefront II", "last": 990, "avg": 990, "min": 990, "max": 990, "peak_at": "2026-10-02T23:38:31+00:00", "change": 0.0, "n": 1}];
+const SERIES = {"Titanfall 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 1198}, {"x": "2026-10-03T04:41:41+00:00", "y": 2221}], "Rainbow Six Siege": [{"x": "2026-10-02T23:38:31+00:00", "y": 68763}, {"x": "2026-10-03T04:41:41+00:00", "y": 66983}], "Star Wars Battlefront II": [{"x": "2026-10-02T23:38:31+00:00", "y": 990}, {"x": "2026-10-03T04:41:41+00:00", "y": 945}], "Watch Dogs": [{"x": "2026-10-02T23:38:31+00:00", "y": 1380}, {"x": "2026-10-03T04:41:41+00:00", "y": 1646}], "Watch Dogs 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 2531}, {"x": "2026-10-03T04:41:41+00:00", "y": 5794}]};
+const STATS  = [{"game": "Rainbow Six Siege", "last": 66983, "avg": 67873, "min": 66983, "max": 68763, "peak_at": "2026-10-02T23:38:31+00:00", "change": -2.6, "n": 2}, {"game": "Watch Dogs 2", "last": 5794, "avg": 4162, "min": 2531, "max": 5794, "peak_at": "2026-10-03T04:41:41+00:00", "change": 128.9, "n": 2}, {"game": "Titanfall 2", "last": 2221, "avg": 1710, "min": 1198, "max": 2221, "peak_at": "2026-10-03T04:41:41+00:00", "change": 85.4, "n": 2}, {"game": "Watch Dogs", "last": 1646, "avg": 1513, "min": 1380, "max": 1646, "peak_at": "2026-10-03T04:41:41+00:00", "change": 19.3, "n": 2}, {"game": "Star Wars Battlefront II", "last": 945, "avg": 968, "min": 945, "max": 990, "peak_at": "2026-10-02T23:38:31+00:00", "change": -4.5, "n": 2}];
 const COLORS = ["#ff6b35", "#4ecdc4", "#ffd23f", "#ee4266", "#3a86ff", "#8338ec", "#06d6a0"];
 const fmt = n => n.toLocaleString("tr-TR");
 const color = {}; Object.keys(SERIES).forEach((g,i) => color[g] = COLORS[i % COLORS.length]);
