@@ -36,7 +36,7 @@
 <body>
 <div class="wrap">
   <h1>🎮 Steam Oyuncu Takip</h1>
-  <div class="sub">Anlık oyuncu sayıları · 10 ölçüm · Son güncelleme: 03.10.2026 04:41 (UTC)</div>
+  <div class="sub">Anlık oyuncu sayıları · 15 ölçüm · Son güncelleme: 03.10.2026 10:17 (UTC)</div>
 
   <div class="cards" id="cards"></div>
 
@@ -63,8 +63,8 @@
 </div>
 
 <script>
-const SERIES = {"Titanfall 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 1198}, {"x": "2026-10-03T04:41:41+00:00", "y": 2221}], "Rainbow Six Siege": [{"x": "2026-10-02T23:38:31+00:00", "y": 68763}, {"x": "2026-10-03T04:41:41+00:00", "y": 66983}], "Star Wars Battlefront II": [{"x": "2026-10-02T23:38:31+00:00", "y": 990}, {"x": "2026-10-03T04:41:41+00:00", "y": 945}], "Watch Dogs": [{"x": "2026-10-02T23:38:31+00:00", "y": 1380}, {"x": "2026-10-03T04:41:41+00:00", "y": 1646}], "Watch Dogs 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 2531}, {"x": "2026-10-03T04:41:41+00:00", "y": 5794}]};
-const STATS  = [{"game": "Rainbow Six Siege", "last": 66983, "avg": 67873, "min": 66983, "max": 68763, "peak_at": "2026-10-02T23:38:31+00:00", "change": -2.6, "n": 2}, {"game": "Watch Dogs 2", "last": 5794, "avg": 4162, "min": 2531, "max": 5794, "peak_at": "2026-10-03T04:41:41+00:00", "change": 128.9, "n": 2}, {"game": "Titanfall 2", "last": 2221, "avg": 1710, "min": 1198, "max": 2221, "peak_at": "2026-10-03T04:41:41+00:00", "change": 85.4, "n": 2}, {"game": "Watch Dogs", "last": 1646, "avg": 1513, "min": 1380, "max": 1646, "peak_at": "2026-10-03T04:41:41+00:00", "change": 19.3, "n": 2}, {"game": "Star Wars Battlefront II", "last": 945, "avg": 968, "min": 945, "max": 990, "peak_at": "2026-10-02T23:38:31+00:00", "change": -4.5, "n": 2}];
+const SERIES = {"Titanfall 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 1198}, {"x": "2026-10-03T04:41:41+00:00", "y": 2221}, {"x": "2026-10-03T10:17:14+00:00", "y": 2505}], "Rainbow Six Siege": [{"x": "2026-10-02T23:38:31+00:00", "y": 68763}, {"x": "2026-10-03T04:41:41+00:00", "y": 66983}, {"x": "2026-10-03T10:17:14+00:00", "y": 40971}], "Star Wars Battlefront II": [{"x": "2026-10-02T23:38:31+00:00", "y": 990}, {"x": "2026-10-03T04:41:41+00:00", "y": 945}, {"x": "2026-10-03T10:17:14+00:00", "y": 903}], "Watch Dogs": [{"x": "2026-10-02T23:38:31+00:00", "y": 1380}, {"x": "2026-10-03T04:41:41+00:00", "y": 1646}, {"x": "2026-10-03T10:17:14+00:00", "y": 1977}], "Watch Dogs 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 2531}, {"x": "2026-10-03T04:41:41+00:00", "y": 5794}, {"x": "2026-10-03T10:17:14+00:00", "y": 7887}]};
+const STATS  = [{"game": "Rainbow Six Siege", "last": 40971, "avg": 58906, "min": 40971, "max": 68763, "peak_at": "2026-10-02T23:38:31+00:00", "change": -40.4, "n": 3}, {"game": "Watch Dogs 2", "last": 7887, "avg": 5404, "min": 2531, "max": 7887, "peak_at": "2026-10-03T10:17:14+00:00", "change": 211.6, "n": 3}, {"game": "Titanfall 2", "last": 2505, "avg": 1975, "min": 1198, "max": 2505, "peak_at": "2026-10-03T10:17:14+00:00", "change": 109.1, "n": 3}, {"game": "Watch Dogs", "last": 1977, "avg": 1668, "min": 1380, "max": 1977, "peak_at": "2026-10-03T10:17:14+00:00", "change": 43.3, "n": 3}, {"game": "Star Wars Battlefront II", "last": 903, "avg": 946, "min": 903, "max": 990, "peak_at": "2026-10-02T23:38:31+00:00", "change": -8.8, "n": 3}];
 const COLORS = ["#ff6b35", "#4ecdc4", "#ffd23f", "#ee4266", "#3a86ff", "#8338ec", "#06d6a0"];
 const fmt = n => n.toLocaleString("tr-TR");
 const color = {}; Object.keys(SERIES).forEach((g,i) => color[g] = COLORS[i % COLORS.length]);
