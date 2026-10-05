@@ -71,11 +71,14 @@ def discount_correlation(conn: sqlite3.Connection) -> tuple[list[str], list[tupl
 
     rows = []
     for game, (xs, ys) in data.items():
+        if len(xs) < 3:
+            rows.append((game, len(xs), None, "hesaplanamadı (en az 3 günlük mağaza verisi gerekli)"))
+            continue
         try:
             r = correlation(xs, ys)
             rows.append((game, len(xs), f"{r:+.3f}", interpret(r)))
-        except StatisticsError:  # <2 gün veya indirim hiç değişmemiş
-            note = "indirim hiç değişmedi" if len(set(xs)) <= 1 else "yetersiz veri"
+        except StatisticsError:  # indirim (veya oyuncu sayısı) hiç değişmemiş
+            note = "indirim hiç değişmedi" if len(set(xs)) <= 1 else "oyuncu sayısı sabit"
             rows.append((game, len(xs), None, f"hesaplanamadı ({note})"))
     return ["oyun", "gun_sayisi", "pearson_r", "yorum"], rows
 
