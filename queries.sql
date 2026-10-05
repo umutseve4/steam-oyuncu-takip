@@ -88,3 +88,26 @@ SELECT s.game_name AS oyun,
 FROM latest_store s
 LEFT JOIN latest_count c USING (app_id)
 ORDER BY anlik_oyuncu DESC;
+
+-- name: 7. İndirim etkisi: indirimli günlerde oyuncu sayısı artıyor mu? (JOIN + koşullu AVG)
+WITH daily AS (
+    SELECT app_id, date(collected_at) AS gun, AVG(player_count) AS ort
+    FROM player_counts
+    GROUP BY app_id, gun
+),
+joined AS (
+    SELECT g.game_name, d.ort, COALESCE(g.discount_percent, 0) AS indirim
+    FROM daily d
+    JOIN game_details g ON g.app_id = d.app_id AND g.snapshot_date = d.gun
+)
+SELECT game_name AS oyun,
+       SUM(indirim > 0)  AS indirimli_gun,
+       SUM(indirim = 0)  AS normal_gun,
+       MAX(indirim)      AS max_indirim_yuzde,
+       CAST(ROUND(AVG(CASE WHEN indirim > 0 THEN ort END)) AS INTEGER) AS ort_indirimli,
+       CAST(ROUND(AVG(CASE WHEN indirim = 0 THEN ort END)) AS INTEGER) AS ort_normal,
+       ROUND(100.0 * (AVG(CASE WHEN indirim > 0 THEN ort END) - AVG(CASE WHEN indirim = 0 THEN ort END))
+             / AVG(CASE WHEN indirim = 0 THEN ort END), 1) AS fark_yuzde
+FROM joined
+GROUP BY game_name
+ORDER BY fark_yuzde DESC;

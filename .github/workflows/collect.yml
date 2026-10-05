@@ -31,6 +31,7 @@ jobs:
 
       - name: SQL analizini çalıştır
         run: python analyze.py
+        continue-on-error: true   # analiz hatası veri kaydını engellemesin
 
       - name: HTML panoyu güncelle
         run: python dashboard.py
@@ -39,7 +40,8 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/steam.db docs/index.html reports/sql_analiz.md
+          git add -f data/steam.db docs/index.html
+          [ -f reports/sql_analiz.md ] && git add -f reports/sql_analiz.md
           git diff --cached --quiet || git commit -m "data: $(date -u +'%Y-%m-%d %H:%M') ölçümü"
           git pull --rebase --quiet || true
           git push
