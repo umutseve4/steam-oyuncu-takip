@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "0 * * * *"   # her saat başı (UTC). GitHub bazen birkaç dakika gecikebilir.
   workflow_dispatch:       # Actions sekmesinden elle de çalıştırılabilir
+  repository_dispatch:     # API ile tetikleme (event_type: collect)
+    types: [collect]
 
 permissions:
   contents: write
