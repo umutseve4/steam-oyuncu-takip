@@ -18,25 +18,27 @@
   .card .name { color:var(--muted); font-size:13px; margin-bottom:6px; }
   .card .num { font-size:30px; font-weight:700; }
   .card .delta { font-size:13px; margin-top:4px; }
+  .card .shop { font-size:12px; color:var(--muted); margin-top:8px; border-top:1px solid var(--border); padding-top:8px; }
+  .tag { background:#06d6a0; color:#0f1117; border-radius:5px; padding:1px 5px; font-weight:700; margin-left:4px; }
   .up { color:#06d6a0; } .down { color:#ee4266; }
-  .panel { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin-bottom:22px; }
+  .panel { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin-bottom:22px; overflow-x:auto; }
   .panel h2 { margin:0 0 12px; font-size:17px; }
   .chart-box { position:relative; height:420px; }
   table { width:100%; border-collapse:collapse; font-size:14px; }
-  th,td { padding:10px 8px; text-align:right; border-bottom:1px solid var(--border); }
+  th,td { padding:10px 8px; text-align:right; border-bottom:1px solid var(--border); white-space:nowrap; }
   th:first-child,td:first-child { text-align:left; }
   th { color:var(--muted); font-weight:600; }
   .dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:8px; }
   .btns button { background:var(--border); color:var(--text); border:0; border-radius:8px; padding:6px 12px; margin:0 6px 10px 0; cursor:pointer; }
   .btns button.active { background:#3a86ff; }
-  footer { color:var(--muted); font-size:12px; text-align:center; }
+  footer { color:var(--muted); font-size:12px; text-align:center; line-height:1.8; }
   a { color:#4ecdc4; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>🎮 Steam Oyuncu Takip</h1>
-  <div class="sub">Anlık oyuncu sayıları · 15 ölçüm · Son güncelleme: 03.10.2026 10:17 (UTC)</div>
+  <div class="sub">Anlık oyuncu sayıları · 20 ölçüm · Son güncelleme: 05.10.2026 14:26 (UTC)</div>
 
   <div class="cards" id="cards"></div>
 
@@ -53,34 +55,41 @@
   <div class="panel">
     <h2>📊 Özet istatistikler</h2>
     <table>
-      <thead><tr><th>Oyun</th><th>Son</th><th>Ortalama</th><th>Min</th><th>Max</th><th>Zirve zamanı</th><th>Değişim</th></tr></thead>
+      <thead><tr><th>Oyun</th><th>Son</th><th>Ortalama</th><th>Min</th><th>Max</th><th>Zirve zamanı</th><th>Değişim</th><th>Fiyat</th><th>Olumlu yorum</th></tr></thead>
       <tbody id="tbody"></tbody>
     </table>
   </div>
 
-  <footer>Veri: Steam Web API (ISteamUserStats/GetNumberOfCurrentPlayers) ·
+  <footer>Veri: Steam Web API (GetNumberOfCurrentPlayers) + Steam Store API (appdetails, appreviews)<br>
+    🔎 <a href="https://github.com/umutseve4/steam-oyuncu-takip/blob/main/reports/sql_analiz.md">SQL analizi</a> ·
     Kaynak kod: <a href="https://github.com/umutseve4/steam-oyuncu-takip">github.com/umutseve4/steam-oyuncu-takip</a></footer>
 </div>
 
 <script>
-const SERIES = {"Titanfall 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 1198}, {"x": "2026-10-03T04:41:41+00:00", "y": 2221}, {"x": "2026-10-03T10:17:14+00:00", "y": 2505}], "Rainbow Six Siege": [{"x": "2026-10-02T23:38:31+00:00", "y": 68763}, {"x": "2026-10-03T04:41:41+00:00", "y": 66983}, {"x": "2026-10-03T10:17:14+00:00", "y": 40971}], "Star Wars Battlefront II": [{"x": "2026-10-02T23:38:31+00:00", "y": 990}, {"x": "2026-10-03T04:41:41+00:00", "y": 945}, {"x": "2026-10-03T10:17:14+00:00", "y": 903}], "Watch Dogs": [{"x": "2026-10-02T23:38:31+00:00", "y": 1380}, {"x": "2026-10-03T04:41:41+00:00", "y": 1646}, {"x": "2026-10-03T10:17:14+00:00", "y": 1977}], "Watch Dogs 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 2531}, {"x": "2026-10-03T04:41:41+00:00", "y": 5794}, {"x": "2026-10-03T10:17:14+00:00", "y": 7887}]};
-const STATS  = [{"game": "Rainbow Six Siege", "last": 40971, "avg": 58906, "min": 40971, "max": 68763, "peak_at": "2026-10-02T23:38:31+00:00", "change": -40.4, "n": 3}, {"game": "Watch Dogs 2", "last": 7887, "avg": 5404, "min": 2531, "max": 7887, "peak_at": "2026-10-03T10:17:14+00:00", "change": 211.6, "n": 3}, {"game": "Titanfall 2", "last": 2505, "avg": 1975, "min": 1198, "max": 2505, "peak_at": "2026-10-03T10:17:14+00:00", "change": 109.1, "n": 3}, {"game": "Watch Dogs", "last": 1977, "avg": 1668, "min": 1380, "max": 1977, "peak_at": "2026-10-03T10:17:14+00:00", "change": 43.3, "n": 3}, {"game": "Star Wars Battlefront II", "last": 903, "avg": 946, "min": 903, "max": 990, "peak_at": "2026-10-02T23:38:31+00:00", "change": -8.8, "n": 3}];
+const SERIES = {"Titanfall 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 1198}, {"x": "2026-10-03T04:41:41+00:00", "y": 2221}, {"x": "2026-10-03T10:17:14+00:00", "y": 2505}, {"x": "2026-10-05T14:26:14+00:00", "y": 2559}], "Rainbow Six Siege": [{"x": "2026-10-02T23:38:31+00:00", "y": 68763}, {"x": "2026-10-03T04:41:41+00:00", "y": 66983}, {"x": "2026-10-03T10:17:14+00:00", "y": 40971}, {"x": "2026-10-05T14:26:14+00:00", "y": 47531}], "Star Wars Battlefront II": [{"x": "2026-10-02T23:38:31+00:00", "y": 990}, {"x": "2026-10-03T04:41:41+00:00", "y": 945}, {"x": "2026-10-03T10:17:14+00:00", "y": 903}, {"x": "2026-10-05T14:26:14+00:00", "y": 836}], "Watch Dogs": [{"x": "2026-10-02T23:38:31+00:00", "y": 1380}, {"x": "2026-10-03T04:41:41+00:00", "y": 1646}, {"x": "2026-10-03T10:17:14+00:00", "y": 1977}, {"x": "2026-10-05T14:26:14+00:00", "y": 2059}], "Watch Dogs 2": [{"x": "2026-10-02T23:38:31+00:00", "y": 2531}, {"x": "2026-10-03T04:41:41+00:00", "y": 5794}, {"x": "2026-10-03T10:17:14+00:00", "y": 7887}, {"x": "2026-10-05T14:26:14+00:00", "y": 8619}]};
+const STATS  = [{"game": "Rainbow Six Siege", "last": 47531, "avg": 56062, "min": 40971, "max": 68763, "peak_at": "2026-10-02T23:38:31+00:00", "change": -30.9, "n": 4, "store": {"price": "\u00dccretsiz", "discount": 0, "positive": 82.1, "reviews": 1559753, "desc": "Very Positive"}}, {"game": "Watch Dogs 2", "last": 8619, "avg": 6208, "min": 2531, "max": 8619, "peak_at": "2026-10-05T14:26:14+00:00", "change": 240.5, "n": 4, "store": {"price": "1.99 USD", "discount": 95, "positive": 82.1, "reviews": 104229, "desc": "Very Positive"}}, {"game": "Titanfall 2", "last": 2559, "avg": 2121, "min": 1198, "max": 2559, "peak_at": "2026-10-05T14:26:14+00:00", "change": 113.6, "n": 4, "store": {"price": "4.49 USD", "discount": 85, "positive": 95.7, "reviews": 287637, "desc": "Overwhelmingly Positive"}}, {"game": "Watch Dogs", "last": 2059, "avg": 1766, "min": 1380, "max": 2059, "peak_at": "2026-10-05T14:26:14+00:00", "change": 49.2, "n": 4, "store": {"price": "1.59 USD", "discount": 90, "positive": 79.7, "reviews": 53574, "desc": "Mostly Positive"}}, {"game": "Star Wars Battlefront II", "last": 836, "avg": 918, "min": 836, "max": 990, "peak_at": "2026-10-02T23:38:31+00:00", "change": -15.6, "n": 4, "store": {"price": "9.99 USD", "discount": 75, "positive": 88.3, "reviews": 100305, "desc": "Very Positive"}}];
 const COLORS = ["#ff6b35", "#4ecdc4", "#ffd23f", "#ee4266", "#3a86ff", "#8338ec", "#06d6a0"];
 const fmt = n => n.toLocaleString("tr-TR");
 const color = {}; Object.keys(SERIES).forEach((g,i) => color[g] = COLORS[i % COLORS.length]);
+
+const shop = s => !s.store ? "" : `<div class="shop">💲 ${s.store.price ?? "–"}${s.store.discount ? `<span class="tag">-%${s.store.discount}</span>` : ""}
+  · 👍 ${s.store.positive != null ? "%" + s.store.positive : "–"} <span title="Steam puanı">${s.store.desc ?? ""}</span></div>`;
 
 document.getElementById("cards").innerHTML = STATS.map(s => `
   <div class="card" style="--c:${color[s.game]}">
     <div class="name">${s.game}</div>
     <div class="num">${fmt(s.last)}</div>
     <div class="delta ${s.change>=0?'up':'down'}">${s.change>=0?'▲':'▼'} %${Math.abs(s.change)} (ilk ölçüme göre)</div>
+    ${shop(s)}
   </div>`).join("");
 
 document.getElementById("tbody").innerHTML = STATS.map(s => `
   <tr><td><span class="dot" style="background:${color[s.game]}"></span>${s.game}</td>
   <td>${fmt(s.last)}</td><td>${fmt(s.avg)}</td><td>${fmt(s.min)}</td><td>${fmt(s.max)}</td>
   <td>${new Date(s.peak_at).toLocaleString("tr-TR",{timeZone:"UTC"})}</td>
-  <td class="${s.change>=0?'up':'down'}">${s.change>=0?'+':''}${s.change}%</td></tr>`).join("");
+  <td class="${s.change>=0?'up':'down'}">${s.change>=0?'+':''}${s.change}%</td>
+  <td>${s.store?.price ?? "–"}</td>
+  <td>${s.store?.positive != null ? "%" + s.store.positive + " (" + fmt(s.store.reviews) + ")" : "–"}</td></tr>`).join("");
 
 Chart.defaults.color = "#8b8fa3"; Chart.defaults.borderColor = "#262a36";
 const chart = new Chart(document.getElementById("line"), {
