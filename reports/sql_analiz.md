@@ -1,6 +1,6 @@
 # 🔎 SQL Analizi
 
-_Otomatik üretildi: 07.11.2026 22:35 UTC · sorgular: [`queries.sql`](../queries.sql)_
+_Otomatik üretildi: 08.11.2026 02:12 UTC · sorgular: [`queries.sql`](../queries.sql)_
 
 ## 1. Her oyunun en kalabalık olduğu saat (UTC, ortalamaya göre)
 
@@ -16,6 +16,7 @@ _Otomatik üretildi: 07.11.2026 22:35 UTC · sorgular: [`queries.sql`](../querie
 
 | oyun | gun | gunluk_ort | degisim_yuzde |
 |---|---|---|---|
+| Rainbow Six Siege | 2026-11-08 | 66,798 | 7.4 |
 | Rainbow Six Siege | 2026-11-07 | 62,177 | 25.1 |
 | Rainbow Six Siege | 2026-11-06 | 49,713 | 1.4 |
 | Rainbow Six Siege | 2026-11-05 | 49,050 | 4 |
@@ -52,6 +53,7 @@ _Otomatik üretildi: 07.11.2026 22:35 UTC · sorgular: [`queries.sql`](../querie
 | Rainbow Six Siege | 2026-10-05 | 55,958 | 3.7 |
 | Rainbow Six Siege | 2026-10-03 | 53,977 | -21.5 |
 | Rainbow Six Siege | 2026-10-02 | 68,763 | – |
+| Star Wars Battlefront II | 2026-11-08 | 1,182 | -7.7 |
 | Star Wars Battlefront II | 2026-11-07 | 1,280 | 31.1 |
 | Star Wars Battlefront II | 2026-11-06 | 976 | 4.5 |
 | Star Wars Battlefront II | 2026-11-05 | 934 | -5.3 |
@@ -64,13 +66,16 @@ _Otomatik üretildi: 07.11.2026 22:35 UTC · sorgular: [`queries.sql`](../querie
 | Star Wars Battlefront II | 2026-10-29 | 1,030 | -3 |
 | Star Wars Battlefront II | 2026-10-28 | 1,062 | -0.4 |
 | Star Wars Battlefront II | 2026-10-27 | 1,066 | 6.8 |
-| Star Wars Battlefront II | 2026-10-26 | 998 | -34.6 |
-| Star Wars Battlefront II | 2026-10-25 | 1,527 | 7.2 |
 
 ## 3. Her ölçümde oyunların sıralaması (son 5 ölçüm) — DENSE_RANK
 
 | zaman_utc | oyun | oyuncu | sira |
 |---|---|---|---|
+| 2026-11-08T02:10:32+00:00 | Rainbow Six Siege | 66,798 | 1 |
+| 2026-11-08T02:10:32+00:00 | Star Wars Battlefront II | 1,182 | 2 |
+| 2026-11-08T02:10:32+00:00 | Titanfall 2 | 1,181 | 3 |
+| 2026-11-08T02:10:32+00:00 | Watch Dogs 2 | 1,134 | 4 |
+| 2026-11-08T02:10:32+00:00 | Watch Dogs | 479 | 5 |
 | 2026-11-07T22:35:10+00:00 | Rainbow Six Siege | 75,913 | 1 |
 | 2026-11-07T22:35:10+00:00 | Star Wars Battlefront II | 1,660 | 2 |
 | 2026-11-07T22:35:10+00:00 | Watch Dogs 2 | 1,092 | 3 |
@@ -91,60 +96,55 @@ _Otomatik üretildi: 07.11.2026 22:35 UTC · sorgular: [`queries.sql`](../querie
 | 2026-11-07T06:55:53+00:00 | Titanfall 2 | 1,315 | 3 |
 | 2026-11-07T06:55:53+00:00 | Star Wars Battlefront II | 768 | 4 |
 | 2026-11-07T06:55:53+00:00 | Watch Dogs | 522 | 5 |
-| 2026-11-07T00:45:37+00:00 | Rainbow Six Siege | 64,061 | 1 |
-| 2026-11-07T00:45:37+00:00 | Star Wars Battlefront II | 1,183 | 2 |
-| 2026-11-07T00:45:37+00:00 | Titanfall 2 | 922 | 3 |
-| 2026-11-07T00:45:37+00:00 | Watch Dogs 2 | 811 | 4 |
-| 2026-11-07T00:45:37+00:00 | Watch Dogs | 427 | 5 |
 
 ## 4. Oynaklık: hangi oyunun oyuncu sayısı en çok dalgalanıyor? (max-min / ortalama)
 
 | oyun | min | max | ort | dalga_yuzde |
 |---|---|---|---|---|
-| Watch Dogs 2 | 721 | 8,619 | 2,490 | 317.1 |
-| Watch Dogs | 359 | 2,131 | 920 | 192.6 |
-| Star Wars Battlefront II | 398 | 2,156 | 1,033 | 170.2 |
-| Titanfall 2 | 640 | 2,760 | 1,248 | 169.9 |
-| Rainbow Six Siege | 24,741 | 91,821 | 57,781 | 116.1 |
+| Watch Dogs 2 | 721 | 8,619 | 2,482 | 318.2 |
+| Watch Dogs | 359 | 2,131 | 917 | 193.2 |
+| Titanfall 2 | 640 | 2,760 | 1,247 | 170 |
+| Star Wars Battlefront II | 398 | 2,156 | 1,034 | 170 |
+| Rainbow Six Siege | 24,741 | 91,821 | 57,839 | 116 |
 
 ## 5. Hafta içi vs hafta sonu ortalaması
 
 | oyun | hafta_sonu | hafta_ici |
 |---|---|---|
-| Rainbow Six Siege | 66,321 | 53,633 |
-| Star Wars Battlefront II | 1,248 | 929 |
-| Titanfall 2 | 1,512 | 1,120 |
-| Watch Dogs | 1,058 | 853 |
-| Watch Dogs 2 | 2,902 | 2,291 |
+| Rainbow Six Siege | 66,330 | 53,633 |
+| Star Wars Battlefront II | 1,247 | 929 |
+| Titanfall 2 | 1,505 | 1,120 |
+| Watch Dogs | 1,047 | 853 |
+| Watch Dogs 2 | 2,868 | 2,291 |
 
 ## 6. Mağaza verisi: fiyat, indirim, yorum puanı + anlık oyuncu (JOIN)
 
 | oyun | anlik_oyuncu | fiyat | para_birimi | indirim_yuzde | toplam_yorum | olumlu_yuzde | steam_puani |
 |---|---|---|---|---|---|---|---|
-| Rainbow Six Siege | 75,913 | 0 | FREE | 0 | – | – | – |
-| Star Wars Battlefront II | 1,660 | 39.99 | USD | 0 | – | – | – |
-| Watch Dogs 2 | 1,092 | 39.99 | USD | 0 | – | – | – |
-| Titanfall 2 | 1,075 | 29.99 | USD | 0 | – | – | – |
-| Watch Dogs | 596 | 15.99 | USD | 0 | – | – | – |
+| Rainbow Six Siege | 66,798 | 0 | FREE | 0 | – | – | – |
+| Star Wars Battlefront II | 1,182 | 39.99 | USD | 0 | – | – | – |
+| Titanfall 2 | 1,181 | 29.99 | USD | 0 | – | – | – |
+| Watch Dogs 2 | 1,134 | 39.99 | USD | 0 | – | – | – |
+| Watch Dogs | 479 | 15.99 | USD | 0 | – | – | – |
 
 ## 7. İndirim etkisi: indirimli günlerde oyuncu sayısı artıyor mu? (JOIN + koşullu AVG)
 
 | oyun | indirimli_gun | normal_gun | max_indirim_yuzde | ort_indirimli | ort_normal | fark_yuzde |
 |---|---|---|---|---|---|---|
-| Watch Dogs 2 | 4 | 30 | 95 | 5,047 | 2,147 | 135.1 |
-| Watch Dogs | 4 | 30 | 90 | 1,603 | 825 | 94.2 |
-| Titanfall 2 | 4 | 30 | 85 | 1,741 | 1,169 | 49 |
-| Star Wars Battlefront II | 4 | 30 | 75 | 913 | 1,037 | -11.9 |
-| Rainbow Six Siege | 0 | 34 | 0 | – | 56,839 | – |
+| Watch Dogs 2 | 4 | 31 | 95 | 5,047 | 2,114 | 138.7 |
+| Watch Dogs | 4 | 31 | 90 | 1,603 | 814 | 96.9 |
+| Titanfall 2 | 4 | 31 | 85 | 1,741 | 1,169 | 48.9 |
+| Star Wars Battlefront II | 4 | 31 | 75 | 913 | 1,041 | -12.3 |
+| Rainbow Six Siege | 0 | 35 | 0 | – | 57,124 | – |
 
 ## 8. İndirim × oyuncu sayısı korelasyonu (Pearson r, Python)
 
 | oyun | gun_sayisi | pearson_r | yorum |
 |---|---|---|---|
-| Rainbow Six Siege | 34 | – | hesaplanamadı (indirim hiç değişmedi) |
-| Star Wars Battlefront II | 34 | -0.218 | zayıf negatif |
-| Titanfall 2 | 34 | +0.571 | orta pozitif |
-| Watch Dogs | 34 | +0.639 | güçlü pozitif |
-| Watch Dogs 2 | 34 | +0.732 | güçlü pozitif |
+| Rainbow Six Siege | 35 | – | hesaplanamadı (indirim hiç değişmedi) |
+| Star Wars Battlefront II | 35 | -0.224 | zayıf negatif |
+| Titanfall 2 | 35 | +0.571 | orta pozitif |
+| Watch Dogs | 35 | +0.639 | güçlü pozitif |
+| Watch Dogs 2 | 35 | +0.730 | güçlü pozitif |
 
 > r ≈ +1: indirim arttıkça oyuncu artıyor · r ≈ 0: ilişki yok · r ≈ −1: ters ilişki. Korelasyon nedensellik değildir; birkaç günlük veriyle sonuç güvenilir olmaz.
