@@ -1,6 +1,6 @@
 # 🔎 SQL Analizi
 
-_Otomatik üretildi: 22.11.2026 02:58 UTC · sorgular: [`queries.sql`](../queries.sql)_
+_Otomatik üretildi: 22.11.2026 11:01 UTC · sorgular: [`queries.sql`](../queries.sql)_
 
 ## 1. Her oyunun en kalabalık olduğu saat (UTC, ortalamaya göre)
 
@@ -16,7 +16,7 @@ _Otomatik üretildi: 22.11.2026 02:58 UTC · sorgular: [`queries.sql`](../querie
 
 | oyun | gun | gunluk_ort | degisim_yuzde |
 |---|---|---|---|
-| Rainbow Six Siege | 2026-11-22 | 57,994 | 12 |
+| Rainbow Six Siege | 2026-11-22 | 46,095 | -10.9 |
 | Rainbow Six Siege | 2026-11-21 | 51,758 | 15.9 |
 | Rainbow Six Siege | 2026-11-20 | 44,647 | -2.6 |
 | Rainbow Six Siege | 2026-11-19 | 45,828 | -7.9 |
@@ -71,6 +71,11 @@ _Otomatik üretildi: 22.11.2026 02:58 UTC · sorgular: [`queries.sql`](../querie
 
 | zaman_utc | oyun | oyuncu | sira |
 |---|---|---|---|
+| 2026-11-22T11:01:21+00:00 | Rainbow Six Siege | 34,195 | 1 |
+| 2026-11-22T11:01:21+00:00 | Watch Dogs 2 | 4,069 | 2 |
+| 2026-11-22T11:01:21+00:00 | Titanfall 2 | 2,376 | 3 |
+| 2026-11-22T11:01:21+00:00 | Star Wars Battlefront II | 1,106 | 4 |
+| 2026-11-22T11:01:21+00:00 | Watch Dogs | 1,039 | 5 |
 | 2026-11-22T02:56:42+00:00 | Rainbow Six Siege | 57,994 | 1 |
 | 2026-11-22T02:56:42+00:00 | Watch Dogs 2 | 2,451 | 2 |
 | 2026-11-22T02:56:42+00:00 | Titanfall 2 | 2,155 | 3 |
@@ -91,60 +96,55 @@ _Otomatik üretildi: 22.11.2026 02:58 UTC · sorgular: [`queries.sql`](../querie
 | 2026-11-21T09:27:04+00:00 | Titanfall 2 | 2,527 | 3 |
 | 2026-11-21T09:27:04+00:00 | Star Wars Battlefront II | 846 | 4 |
 | 2026-11-21T09:27:04+00:00 | Watch Dogs | 838 | 5 |
-| 2026-11-21T01:13:48+00:00 | Rainbow Six Siege | 55,143 | 1 |
-| 2026-11-21T01:13:48+00:00 | Watch Dogs 2 | 1,662 | 2 |
-| 2026-11-21T01:13:48+00:00 | Titanfall 2 | 1,366 | 3 |
-| 2026-11-21T01:13:48+00:00 | Star Wars Battlefront II | 1,119 | 4 |
-| 2026-11-21T01:13:48+00:00 | Watch Dogs | 674 | 5 |
 
 ## 4. Oynaklık: hangi oyunun oyuncu sayısı en çok dalgalanıyor? (max-min / ortalama)
 
 | oyun | min | max | ort | dalga_yuzde |
 |---|---|---|---|---|
-| Watch Dogs 2 | 685 | 8,619 | 2,258 | 351.4 |
-| Watch Dogs | 315 | 2,131 | 833 | 218 |
-| Titanfall 2 | 628 | 2,760 | 1,202 | 177.4 |
-| Star Wars Battlefront II | 398 | 2,156 | 1,029 | 170.9 |
-| Rainbow Six Siege | 23,921 | 91,821 | 56,395 | 120.4 |
+| Watch Dogs 2 | 685 | 8,619 | 2,267 | 350 |
+| Watch Dogs | 315 | 2,131 | 834 | 217.8 |
+| Titanfall 2 | 628 | 2,760 | 1,208 | 176.5 |
+| Star Wars Battlefront II | 398 | 2,156 | 1,029 | 170.8 |
+| Rainbow Six Siege | 23,921 | 91,821 | 56,287 | 120.6 |
 
 ## 5. Hafta içi vs hafta sonu ortalaması
 
 | oyun | hafta_sonu | hafta_ici |
 |---|---|---|
-| Rainbow Six Siege | 64,363 | 52,440 |
-| Star Wars Battlefront II | 1,246 | 921 |
-| Titanfall 2 | 1,482 | 1,063 |
-| Watch Dogs | 967 | 766 |
-| Watch Dogs 2 | 2,659 | 2,059 |
+| Rainbow Six Siege | 63,925 | 52,440 |
+| Star Wars Battlefront II | 1,244 | 921 |
+| Titanfall 2 | 1,495 | 1,063 |
+| Watch Dogs | 968 | 766 |
+| Watch Dogs 2 | 2,680 | 2,059 |
 
 ## 6. Mağaza verisi: fiyat, indirim, yorum puanı + anlık oyuncu (JOIN)
 
 | oyun | anlik_oyuncu | fiyat | para_birimi | indirim_yuzde | toplam_yorum | olumlu_yuzde | steam_puani |
 |---|---|---|---|---|---|---|---|
-| Rainbow Six Siege | 57,994 | 0 | FREE | 0 | – | – | – |
-| Watch Dogs 2 | 2,451 | 5.99 | USD | 85 | – | – | – |
-| Titanfall 2 | 2,155 | 4.49 | USD | 85 | – | – | – |
-| Star Wars Battlefront II | 1,352 | 7.99 | USD | 80 | – | – | – |
-| Watch Dogs | 846 | 3.99 | USD | 75 | – | – | – |
+| Rainbow Six Siege | 34,195 | 0 | FREE | 0 | – | – | – |
+| Watch Dogs 2 | 4,069 | 5.99 | USD | 85 | – | – | – |
+| Titanfall 2 | 2,376 | 4.49 | USD | 85 | – | – | – |
+| Star Wars Battlefront II | 1,106 | 7.99 | USD | 80 | – | – | – |
+| Watch Dogs | 1,039 | 3.99 | USD | 75 | – | – | – |
 
 ## 7. İndirim etkisi: indirimli günlerde oyuncu sayısı artıyor mu? (JOIN + koşullu AVG)
 
 | oyun | indirimli_gun | normal_gun | max_indirim_yuzde | ort_indirimli | ort_normal | fark_yuzde |
 |---|---|---|---|---|---|---|
-| Watch Dogs 2 | 8 | 41 | 95 | 3,714 | 1,904 | 95.1 |
-| Watch Dogs | 8 | 41 | 90 | 1,183 | 735 | 61 |
-| Titanfall 2 | 7 | 42 | 85 | 1,762 | 1,096 | 60.8 |
-| Star Wars Battlefront II | 7 | 42 | 80 | 1,046 | 1,016 | 2.9 |
-| Rainbow Six Siege | 0 | 49 | 0 | – | 55,302 | – |
+| Watch Dogs 2 | 8 | 41 | 95 | 3,815 | 1,904 | 100.4 |
+| Watch Dogs | 8 | 41 | 90 | 1,195 | 735 | 62.6 |
+| Titanfall 2 | 7 | 42 | 85 | 1,778 | 1,096 | 62.2 |
+| Star Wars Battlefront II | 7 | 42 | 80 | 1,028 | 1,016 | 1.2 |
+| Rainbow Six Siege | 0 | 49 | 0 | – | 55,060 | – |
 
 ## 8. İndirim × oyuncu sayısı korelasyonu (Pearson r, Python)
 
 | oyun | gun_sayisi | pearson_r | yorum |
 |---|---|---|---|
 | Rainbow Six Siege | 49 | – | hesaplanamadı (indirim hiç değişmedi) |
-| Star Wars Battlefront II | 49 | +0.067 | çok zayıf pozitif |
-| Titanfall 2 | 49 | +0.651 | güçlü pozitif |
-| Watch Dogs | 49 | +0.485 | orta pozitif |
-| Watch Dogs 2 | 49 | +0.587 | orta pozitif |
+| Star Wars Battlefront II | 49 | +0.033 | çok zayıf pozitif |
+| Titanfall 2 | 49 | +0.655 | güçlü pozitif |
+| Watch Dogs | 49 | +0.495 | orta pozitif |
+| Watch Dogs 2 | 49 | +0.612 | güçlü pozitif |
 
 > r ≈ +1: indirim arttıkça oyuncu artıyor · r ≈ 0: ilişki yok · r ≈ −1: ters ilişki. Korelasyon nedensellik değildir; birkaç günlük veriyle sonuç güvenilir olmaz.
